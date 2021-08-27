@@ -1,0 +1,33 @@
+$bgi($path, $fixed = false)
+  $size = image-size($path)
+  background center center no-repeat
+  background-size cover
+  background-image url($path)
+  width ($size[0] / 100) rem
+
+  if ($fixed)
+    $height = ($size[1] / 100) rem
+    height 'calc(%s - .5px)' % $height
+  else
+    height ($size[1] / 100) rem
+
+$box()
+  box-sizing border-box
+
+$ellipsis()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+$debug(type = 'black')
+  $box()
+
+  if (type == 'black')
+    background-color rgba(#000, 0.5)
+    box-shadow 0 0 0 0.01rem rgba(red, 0.8)
+  else
+    background-color rgba(#fff, 0.5)
+    box-shadow 0 0 0 0.01rem rgba(red, 0.8)
+
+$middle($a, $b = 7.5rem)
+  ($b - $a) * 0.5

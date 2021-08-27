@@ -1,0 +1,20 @@
+@import '../include/basic'
+
+.clock
+  width 320px
+  height 80px
+  line-height @height
+  background-color #fff
+
+  p
+    display inline-block
+    font-size 40px
+
+    &.h, &.m, &.s
+      width 80px
+      color rgba(#000, 0.8)
+      font-weight block
+
+    &.separator
+      width 20px
+      color rgba(#000, 0.2)

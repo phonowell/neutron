@@ -1,0 +1,20 @@
+@import '../include/basic'
+
+.stage
+  position relative
+  width 100%
+  min-height 100vh
+  margin 0 auto
+  text-align center
+  overflow hidden
+  font-size 0
+  user-select none
+  -webkit-tap-highlight-color rgba(#000, 0)
+
+  .msg
+    position absolute
+    pointer-events none
+
+  img[src^='https:@']
+    background-color rgba(#000, 0.5)
+    text-indent -255rem

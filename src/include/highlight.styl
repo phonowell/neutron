@@ -1,0 +1,33 @@
+$highlight($path)
+  $size = image-size($path)
+  --width: $size[0]
+  $bgi($path)
+  position relative
+  mask-image url($path)
+  mask-size 100% 100%
+
+  &:before
+    content ''
+    $bgi($path)
+    absolute left top
+
+  &:after
+    content ''
+    absolute left -1.5rem top 0 - $size[1] * 0.25
+    width 1rem
+    height: $size[1] * 1.5
+    background-image linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))
+    animation highlight-default 3s ease infinite both
+
+@keyframes highlight-default
+  0%
+    opacity 0
+    pointer-events none
+    transform translateX(0) rotate(-15deg)
+
+  25%
+    opacity 1
+
+  50%, 100%
+    opacity 0
+    transform translateX(calc(2rem + var(--width))) rotate(-15deg)

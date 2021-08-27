@@ -1,0 +1,20 @@
+@import '../include/basic'
+@import '../include/animation'
+
+normalize-css()
+global-reset()
+
+html, body
+  scroll-behavior smooth
+  text-align center
+  background-color #000
+
+#root
+  &:empty
+    & ~ iframe
+      opacity initial
+      pointer-events initial
+
+  & ~ iframe
+    opacity 0.5
+    pointer-events none

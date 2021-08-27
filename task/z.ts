@@ -5,9 +5,9 @@ import c2a from 'coffee-ahk'
 
 const compile = async () => {
   await $.compile([
-    './source/index.coffee',
-    './source/index.pug',
-    './source/index.styl',
+    './shell/static/index.coffee',
+    './shell/static/index.pug',
+    './shell/static/index.styl',
   ], {
     bare: true,
     minify: false,
@@ -16,8 +16,18 @@ const compile = async () => {
 
 const main = async (): Promise<void> => {
   await compile()
-  await c2a('./container/index.coffee')
-  await $.exec('start ./container/index.ahk')
+  await c2a('./shell/start.coffee')
+  await move()
+  await $.exec([
+    'cd dist',
+    'start start.ahk',
+  ])
+}
+
+const move = async () => {
+  await $.remove('./dist')
+  await $.copy('./build/**/*', './dist/static')
+  await $.copy('./shell/start.ahk', './dist')
 }
 
 // export

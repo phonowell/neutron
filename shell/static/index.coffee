@@ -1,0 +1,1 @@
+window.addEventListener 'mousedown', -> Neutron.Drag()

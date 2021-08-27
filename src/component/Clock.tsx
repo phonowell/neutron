@@ -3,13 +3,47 @@ import React from 'react'
 
 // interface
 
-type Content = [string, string, string]
+type Content = [
+  number, number,
+  number, number,
+  number, number,
+]
+
+type PropsGroup = {
+  current: number
+  max: number
+}
 
 // component
 
+const Group: React.FC<PropsGroup> = props => {
+
+  const style = {
+    transform: `translateY(-${props.current * 20}px)`,
+  }
+
+  // render
+  return (
+    <div
+      className='group'
+      style={style}
+    >
+      {
+        new Array(1 + props.max).fill(0)
+          .map((_n, i) => (
+            <div
+              className='item'
+              key={i}
+            >{i}</div>
+          ))
+      }
+    </div>
+  )
+}
+
 const Clock: React.FC = () => {
 
-  const [content, setContent] = React.useState<Content>(['00', '00', '00'])
+  const [content, setContent] = React.useState<Content>([0, 0, 0, 0, 0, 0])
 
   // function
 
@@ -22,7 +56,11 @@ const Clock: React.FC = () => {
         date.getHours(),
         date.getMinutes(),
         date.getSeconds(),
-      ].map(n => n.toString().padStart(2, '0')) as Content,
+      ]
+        .map(n => n.toString().padStart(2, '0'))
+        .join('')
+        .split('')
+        .map(n => parseInt(n, 10)) as Content,
     )
   }
 
@@ -30,17 +68,45 @@ const Clock: React.FC = () => {
 
   React.useEffect(() => {
     const timer = window.setInterval(next, 500)
+    next()
     return () => window.clearInterval(timer)
   }, [])
 
   // render
   return (
     <div className='clock'>
-      <p className='h'>{content[0]}</p>
+
+      <Group
+        current={content[0]}
+        max={2}
+      ></Group>
+      <Group
+        current={content[1]}
+        max={9}
+      ></Group>
+
       <p className='separator'>:</p>
-      <p className='m'>{content[1]}</p>
+
+      <Group
+        current={content[2]}
+        max={6}
+      ></Group>
+      <Group
+        current={content[3]}
+        max={9}
+      ></Group>
+
       <p className='separator'>:</p>
-      <p className='s'>{content[2]}</p>
+
+      <Group
+        current={content[4]}
+        max={6}
+      ></Group>
+      <Group
+        current={content[5]}
+        max={9}
+      ></Group>
+
     </div>
   )
 }

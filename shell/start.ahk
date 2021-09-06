@@ -1976,13 +1976,13 @@ iframe {
   border: 0;
   outline: 0;
   appearance: none;
+  opacity: 0.99;
 }
 .ifr-clock {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 80px;
   pointer-events: none;
-  opacity: 0.99;
 }
 
 )"
@@ -1998,14 +1998,14 @@ global height := 80
 global Webview := new Neutron(html, css, js)
 Webview.Gui("+LabelNeutron")
 WebView.Show("w" . (width) . " h" . (height) . "")
-(Func("nnrc1ri67p8_1")).Call()
+(Func("ced13g9t6gg_1")).Call()
 
 return
 NeutronClose:
 ExitApp
 return
 
-nnrc1ri67p8_1() {
+ced13g9t6gg_1() {
   $ifr := Webview.Document.QuerySelector(".ifr-clock")
   $ifr.src := "" . (A_WorkingDir) . "/static/index.html"
   hWnd := Webview.hWnd
